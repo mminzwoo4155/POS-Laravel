@@ -1,4 +1,4 @@
 ---Admin Login Details---
 
-Email   : admin@mail.com
-Password: codeastro.com
+Email   : minzwoo1234@gmail.com
+Password: minh1234
