@@ -20,24 +20,18 @@ class CheckPermission
     {
         $roleId = Auth::user()->role_id;
         $routeName = $request->route()->getName();
-        $route = DB::table('routes')->where('route_name', $routeName)->get();
+        $route = DB::table('routes')->where('route_name', $routeName)->first();
+        if ($route) {
+            $permission = DB::table('permissions')
+                ->where('route_id', $route->id)
+                ->where('role_id', $roleId)
+                ->first();
 
-        if ($route != null && count($route) > 0) {
-			$route_id = $route[0]->id;
-			echo $route_id;
+            if (!$permission || !$permission->status) {
+                return redirect()->route('home');
+            }
+        }
 
-			$permission = DB::table('permissions')
-				->where('route_id', $route_id)
-				->where('role_id', $roleId)
-				->get();
-			if ($permission != null && count($permission) > 0) {
-				if ($permission[0]->status == 0) {
-					return redirect()->route('home');
-				}
-			} else {
-				return redirect()->route('home');
-			}
-		}
         return $next($request);
     }
 }
