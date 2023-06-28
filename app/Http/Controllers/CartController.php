@@ -12,7 +12,7 @@ class CartController extends Controller
         $this->middleware('auth');
         $this->middleware('permission');
     }
-    
+
     public function index(Request $request)
     {
         if ($request->wantsJson()) {
@@ -34,16 +34,16 @@ class CartController extends Controller
         $cart = $request->user()->cart()->where('barcode', $barcode)->first();
         if ($cart) {
             // check product quantity
-            if($product->quantity <= $cart->pivot->quantity) {
+            if ($product->quantity <= $cart->pivot->quantity) {
                 return response([
-                    'message' => 'Product available only: '. $product->quantity,
+                    'message' => 'Product available only: ' . $product->quantity,
                 ], 400);
             }
             // update only quantity
             $cart->pivot->quantity = $cart->pivot->quantity + 1;
             $cart->pivot->save();
         } else {
-            if($product->quantity < 1) {
+            if ($product->quantity < 1) {
                 return response([
                     'message' => 'Product out of stock',
                 ], 400);

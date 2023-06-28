@@ -30,6 +30,12 @@
                     </a>
                 </li>
                 <li class="nav-item has-treeview">
+                    <a href="{{ route('users.index') }}" class="nav-link {{ activeSegment('users') }}">
+                        <i class='nav-icon fas fa-user-alt'></i>
+                        <p>Users</p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
                     <a href="{{ route('products.index') }}" class="nav-link {{ activeSegment('products') }}">
                         <i class="nav-icon fas fa-boxes"></i>
                         <p>Products</p>
