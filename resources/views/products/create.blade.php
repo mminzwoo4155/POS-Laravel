@@ -7,7 +7,6 @@
 
 <div class="card">
     <div class="card-body">
-	<!-- Log on to codeastro.com for more projects -->
         <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -94,7 +93,7 @@
             </div>
 
             <button class="btn btn-success btn-block btn-lg" type="submit">Submit</button>
-        </form><!-- Log on to codeastro.com for more projects -->
+        </form>
     </div>
 </div>
 @endsection
